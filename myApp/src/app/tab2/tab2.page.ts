@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+import { AuthService } from '../@app-core/http/auth';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -9,13 +11,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(
+    private authService: AuthService
+  ) {}
   formInfo = new FormGroup({
     phone: new FormControl(''),
     password: new FormControl('')
   })
 
   submitForm() {
-    console.log(this.formInfo.value);
+    this.authService.login(this.formInfo.value).subscribe({
+      next: (data:any) => {
+        console.log(data);
+      },
+      error: (err:any)=>{
+        console.log(err);
+      }
+    })
   }
 }

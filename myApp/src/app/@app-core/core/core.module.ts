@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../http/auth';
 import { ModuleTeardownOptions } from '@angular/core/testing';
@@ -15,7 +15,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        AuthService
+        AuthService,
       ]
     };
   }

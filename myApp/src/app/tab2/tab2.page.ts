@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tab2',
@@ -8,5 +10,12 @@ import { Component } from '@angular/core';
 export class Tab2Page {
 
   constructor() {}
+  formInfo = new FormGroup({
+    phone: new FormControl(''),
+    password: new FormControl('')
+  })
 
+  submitForm() {
+    console.log(this.formInfo.value);
+  }
 }

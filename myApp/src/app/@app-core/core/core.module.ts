@@ -1,7 +1,9 @@
-import { NgModule, ModuleWithProviders, InjectionToken, ErrorHandler } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../http/auth';
+import { AuthService } from '../http/auth/auth.service';
+import { GoongService } from '../http/goong/goong.service';
 import { ModuleTeardownOptions } from '@angular/core/testing';
+
 
 
 @NgModule({
@@ -10,13 +12,12 @@ import { ModuleTeardownOptions } from '@angular/core/testing';
     CommonModule
   ]
 })
-export class CoreModule {
-  public static forRoot(): ModuleWithProviders<unknown> {
+export class CoreModule { 
+  public static forRoot(): ModuleWithProviders<unknown>{
     return {
       ngModule: CoreModule,
-      providers: [
-        AuthService,
-      ]
-    };
+      providers: [AuthService, GoongService]
+
+    }
   }
 }

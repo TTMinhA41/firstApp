@@ -1,17 +1,25 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Tab 1
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content class="body" [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-item>
+      <ion-searchbar class="search-bar" (ionInput)="changeEvent($event)"></ion-searchbar>
+    </ion-item>
+    <div class="results-contain" *ngFor="let i of places">
+      <ion-icon class="locate-icon" name="location"></ion-icon>
+      <p class="results">{{i.description}}</p>
+    </div>
+
+  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

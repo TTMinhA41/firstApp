@@ -5,21 +5,52 @@
     </ion-title>
   </ion-toolbar>
 </ion-header> -->
-
-<ion-content class="body" [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
-    <ion-item>
-      <ion-searchbar class="search-bar" (ionInput)="changeEvent($event)"></ion-searchbar>
-    </ion-item>
-    <div class="results-contain" *ngFor="let i of places">
-      <ion-icon class="locate-icon" name="location"></ion-icon>
-      <p class="results">{{i.description}}</p>
+<ion-header collapse="condense">
+  <ion-content class="header">
+    <div class="shipping-header">
+      <div class="shipping-toolbar">
+        <div class="main-toolbar">
+          <ion-icon class="back-btn" name="arrow-back-outline"></ion-icon>
+          <div class="shipping-goal">
+            <p class="header-text smol">Giao đến</p>
+            <div class="goal-locate">
+              <p class="header-text big">Đà Nẵng, Việt Nam</p>
+              <ion-icon class="more-ship" name="caret-down-outline"></ion-icon>
+            </div>
+          </div>
+        </div>
+        <ion-icon class="shipping-info" name="newspaper-outline"></ion-icon>
+      </div>
     </div>
+  </ion-content>
+</ion-header>
+<ion-content class="body" [fullscreen]="true">
+  
+  <div class="search-native">
+    <ion-searchbar class="search-bar" placeholder="Bạn đang thèm gì nào?" (ionInput)="changeEvent($event)"></ion-searchbar>
+  </div>
+  
+  <div class="results-contain" *ngFor="let i of places" (click)="moreAboutLoc(i.place_id)">
+    <ion-icon class="locate-icon" name="location"></ion-icon>
+    <p class="results">{{i.description}}</p>
+  </div>
+  <swiper-container>
+    <swiper-slide>
+      <ion-img src=
+      "https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__"
+      ></ion-img>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-img src=
+      "https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__"
+      ></ion-img>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-img src=
+      "https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__"
+      ></ion-img>
+    </swiper-slide>
+  </swiper-container>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

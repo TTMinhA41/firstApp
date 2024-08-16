@@ -1,2 +1,11 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+@font-face {
+    font-family: 'FF DIN';
+    src: local('FF DIN Pro Bold'), local('FF-DIN-Pro-Bold'),
+        url('../assets/fonts/DINPro-Bold/DINPro-Bold.woff2') format('woff2'),
+        url('../assets/fonts/DINPro-Bold/DINPro-Bold.woff') format('woff'),
+        url('../assets/fonts/DINPro-Bold/style.css') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}

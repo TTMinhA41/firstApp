@@ -32,4 +32,14 @@ export class GoongService {
 			})
     )
   }
+  public goongGetId(api:any, placeId:any){
+    return this.http.get(`https://rsapi.goong.io/Place/Detail?place_id=${placeId}&api_key=${api}`).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError((error: any) => {
+        return error;
+      })
+    )
+  }
 }

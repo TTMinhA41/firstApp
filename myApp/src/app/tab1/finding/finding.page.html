@@ -1,0 +1,22 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>finding</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">finding</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <div class="search-native">
+    <ion-icon class="back-from-find" name="arrow-back-outline" (click)="goBack()"></ion-icon>
+    <ion-searchbar class="search-bar" placeholder="Bạn đang thèm gì nào?" (ionInput)="changeValue($event)"></ion-searchbar>
+  </div>
+
+  <div class="results-contain" *ngFor="let i of places">
+    <ion-icon class="search-icon" name="search-outline"></ion-icon>
+    <p class="results">{{i.description}}</p>
+  </div>
+</ion-content>

@@ -6,6 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: Tab1Page,
+  },
+  {
+    path: 'finding',
+    loadChildren: () => import('./finding/finding.module').then( m => m.FindingPageModule)
+  },
+  {
+    path: 'rest-profile',
+    loadChildren: () => import('./rest-profile/rest-profile.module').then( m => m.RestProfilePageModule)
   }
 ];
 

@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header> -->
-<ion-header collapse="condense">
+<ion-header collapse="condense" scroll-y="false">
   <ion-content class="header">
     <div class="shipping-header">
       <div class="shipping-toolbar">
@@ -13,8 +13,8 @@
           <ion-icon class="back-btn" name="arrow-back-outline"></ion-icon>
           <div class="shipping-goal">
             <p class="header-text smol">Giao đến</p>
-            <div class="goal-locate">
-              <p class="header-text big">Đà Nẵng, Việt Nam</p>
+            <div class="goal-locate" *ngIf="shippingLoc">
+              <p class="header-text big">{{shippingLoc}}, Việt Nam</p>
               <ion-icon class="more-ship" name="caret-down-outline"></ion-icon>
             </div>
           </div>
@@ -25,32 +25,137 @@
   </ion-content>
 </ion-header>
 <ion-content class="body" [fullscreen]="true">
-  
+
   <div class="search-native">
-    <ion-searchbar class="search-bar" placeholder="Bạn đang thèm gì nào?" (ionInput)="changeEvent($event)"></ion-searchbar>
+    <ion-searchbar class="search-bar" placeholder="Bạn đang thèm gì nào?" (click)="goFind()"></ion-searchbar>
   </div>
-  
-  <div class="results-contain" *ngFor="let i of places" (click)="moreAboutLoc(i.place_id)">
-    <ion-icon class="locate-icon" name="location"></ion-icon>
-    <p class="results">{{i.description}}</p>
-  </div>
-  <swiper-container>
-    <swiper-slide>
-      <ion-img src=
-      "https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__"
-      ></ion-img>
+
+  <swiper-container class="food-type-slider" loop="true" slides-per-view="5.5">
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
-    <swiper-slide>
-      <ion-img src=
-      "https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__"
-      ></ion-img>
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
-    <swiper-slide>
-      <ion-img src=
-      "https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__"
-      ></ion-img>
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
+    </swiper-slide>
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
+    </swiper-slide>
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
+    </swiper-slide>
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
+    </swiper-slide>
+    <swiper-slide class="food-slide">
+      <ion-avatar>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+      </ion-avatar>
+      <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
   </swiper-container>
+
+  <div class="ads-container">
+    <swiper-container class="new-ads-slider" pagination="true" loop="true">
+      <swiper-slide class="ads-slide">
+        <ion-img
+          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__">
+        </ion-img>
+      </swiper-slide>
+      <swiper-slide class="ads-slide">
+        <ion-img
+          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__">
+        </ion-img>
+      </swiper-slide>
+      <swiper-slide class="ads-slide">
+        <ion-img
+          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__">
+        </ion-img>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div class="population-rest">
+    <h3 class="pop-rest-title">Cửa hàng phổ biến</h3>
+    <swiper-container class="pop-rest-slider" loop="true" slides-per-view="2.5
+    ">
+      <swiper-slide class="pop-rest-slide" (click)="goRest()">
+        <ion-avatar class="pop-rest-face">
+          <img
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            alt="">
+        </ion-avatar>
+        <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
+        <div class="rest-rated">
+          <ion-icon class="rate-star" name="star"></ion-icon>
+          <p class="rated-point">4.1 (235)</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide class="pop-rest-slide" (click)="goRest()">
+        <ion-avatar class="pop-rest-face">
+          <img
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            alt="">
+        </ion-avatar>
+        <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
+        <div class="rest-rated">
+          <ion-icon class="rate-star" name="star"></ion-icon>
+          <p class="rated-point">4.1 (235)</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide class="pop-rest-slide" (click)="goRest()">
+        <ion-avatar class="pop-rest-face">
+          <img
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            alt="">
+        </ion-avatar>
+        <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
+        <div class="rest-rated">
+          <ion-icon class="rate-star" name="star"></ion-icon>
+          <p class="rated-point">4.1 (235)</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide class="pop-rest-slide" (click)="goRest()">
+        <ion-avatar class="pop-rest-face">
+          <img
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            alt="">
+        </ion-avatar>
+        <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
+        <div class="rest-rated">
+          <ion-icon class="rate-star" name="star"></ion-icon>
+          <p class="rated-point">4.1 (235)</p>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

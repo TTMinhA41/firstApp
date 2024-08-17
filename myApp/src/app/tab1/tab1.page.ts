@@ -5,7 +5,7 @@ import { NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { Router } from '@angular/router';
 
-import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element';
 
 @Component({
   selector: 'app-tab1',
@@ -17,6 +17,7 @@ import { register } from 'swiper/element/bundle';
 export class Tab1Page implements OnInit{
   apiKey = "moh7iGN6X9muXFV9wcXkwFSi5xj7CeSJYzwBM98Q";
   places:any = [];
+  shippingLoc:any = '';
   constructor(
     private goongService: GoongService,
     private router: Router
@@ -31,6 +32,7 @@ export class Tab1Page implements OnInit{
       this.goongService.goongCurrentPostion(this.apiKey, coord.latitude, coord.longitude).subscribe({
         next: (data: any) => {
           console.log(data);
+          this.shippingLoc = data.results[0].compound.province;
         },
         error: (error: any) => {
           console.error(error);
@@ -41,17 +43,8 @@ export class Tab1Page implements OnInit{
     printCurrentPosition();
   }
 
-  changeEvent(res: any) {
-    this.goongService.goong(this.apiKey, res.detail.value).subscribe({
-      next: (data: any) => {
-        // console.log(data);
-        this.places = data.predictions;
-        
-      },
-      error: (error: any) => {
-        console.error(error);
-      }
-    })
+  goFind(){
+    this.router.navigate(['/tabs/tab1/finding']);
   }
 
   moreAboutLoc(res: any){
@@ -65,5 +58,8 @@ export class Tab1Page implements OnInit{
         console.error(error);
       }
     })
+  }
+  goRest(){
+    this.router.navigate(['/tabs/tab1/rest-profile']);
   }
 }

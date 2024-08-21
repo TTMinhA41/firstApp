@@ -12,20 +12,181 @@
             top: 25%;
             justify-content: space-between;
             padding: 0 8px;
-            .option-group{
+
+            .option-group {
                 display: flex;
-                .single-op{
+
+                .single-op {
                     margin: 0 4px;
                     padding: 7px;
                     height: 38px;
                     background-color: rgba(0, 0, 0, 0.75);
                     border-radius: 50%;
-                    ion-icon{
+
+                    ion-icon {
                         color: white;
                         width: 24px;
                         height: 24px;
                     }
                 }
+            }
+        }
+
+    }
+}
+
+.main-face {
+    width: 100%;
+    position: absolute;
+    top: 115px;
+    z-index: 10;
+    text-align: center;
+
+    .rest-avt {
+        width: 125px;
+        height: 125px;
+        border: 1px #f1f1f1 solid;
+        margin: 0 auto;
+    }
+
+    .rest-name {
+        padding: 4px 0;
+    }
+
+    .rest-working-time {
+        color: #949494;
+    }
+}
+
+.main-req {
+    width: 100%;
+    padding-top: 114px;
+
+    .orders {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 24px 0;
+
+        .order-choise {
+            display: flex;
+            align-items: center;
+            padding: 8px 5%;
+            align-self: center;
+            border-radius: 24px;
+
+            .order-icon {
+                width: 24px;
+                height: 24px;
+                padding: 0 8px;
+            }
+
+            .order-text {
+                font-size: 16px;
+            }
+        }
+
+        .order-choise.group {
+            border: 1px #ffb800 solid;
+            background-color: #fff9e9;
+        }
+
+        .order-choise.later {
+            border: 1px #e4e4e4 solid;
+        }
+    }
+
+    .info-tab {
+        display: flex;
+        justify-content: space-around;
+
+        .single-tab {
+            padding: 12px;
+
+            .info-value {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .type-icon {
+                    padding: 0 4px;
+                }
+
+                .type-icon.star {
+                    color: #ff9900;
+                }
+
+                .type-icon.location {
+                    color: #ec1e1e;
+                    height: 21px;
+                }
+
+                .type-icon.time {
+                    color: #338700;
+                }
+            }
+        }
+    }
+
+    .rest-menu {
+        width: 100%;
+        .menu-type-title{
+            padding: 8px 10px;
+        }
+        .menu-type {
+            padding: 10px;
+
+            .meal {
+                display: flex;
+                width: 100%;
+                padding: 5px 0;
+                border-bottom: 2px #f1f1f1 solid;
+                justify-content: space-between;
+                align-items: end;
+                .main-info {
+                    display: flex;
+
+                    .meal-info {
+                        display: flex;
+                        padding: 0 3px;
+                        justify-content: space-around;
+                        flex-direction: column;
+
+                        .meal-price {
+                            color: #ff5050;
+                        }
+
+                        .sold-time {
+                            font-size: 14px;
+                            color: #949494;
+
+                        }
+
+                          padding: 0 3px;
+                        }
+
+                    }
+                    .meal-face {
+                        width: 90px;  
+                }
+
+                .add-cast {
+                    height: fit-content;
+                    padding: 4px 4px 0px 4px;
+                    background-color: #ec1e1e;
+                    border-radius: 50%;
+                    margin: 4px;
+                    .add-icon {
+                        width: 20px;
+                        height: 20px;
+                        color: white;
+                    }
+
+                }
+            }
+
+            .meal:last-child {
+                border-bottom: 0;
             }
         }
     }

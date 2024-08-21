@@ -1,28 +1,111 @@
-<ion-header class="main-header" collapes="condense" scroll-y="true">
-  <!-- <ion-img class="rest-banner" src="https://www.figma.com/file/iZMFufoY7Z5RKvtFnKTRcr/image/1b9a64bcd7e16083af17185de88e722d94ab4104"></ion-img> -->
-  <ion-content class="header">
-    <div class="options">
-      <div class="option-group">
-        <div class="single-op" (click)="goBack()">
-          <ion-icon name="arrow-back-sharp"></ion-icon>
+<ion-content [fullscreen]="true" *ngIf="restaurantData">
+  <ion-header class="main-header" collapes="condense" scroll-y="true">
+    <!-- <ion-img class="rest-banner" src="https://www.figma.com/file/iZMFufoY7Z5RKvtFnKTRcr/image/1b9a64bcd7e16083af17185de88e722d94ab4104"></ion-img> -->
+    <ion-content class="header" style="background-image: url('{{restaurantData.faces.banner}}');">
+      <div class="options">
+        <div class="option-group">
+          <div class="single-op" (click)="goBack()">
+            <ion-icon name="arrow-back-sharp"></ion-icon>
+          </div>
+        </div>
+        <div class="option-group">
+          <div class="single-op">
+            <ion-icon name="heart-outline"></ion-icon>
+          </div>
+          <div class="single-op">
+            <ion-icon name="share-social-outline"></ion-icon>
+          </div>
         </div>
       </div>
-      <div class="option-group">
-        <div class="single-op">
-          <ion-icon name="heart-outline"></ion-icon>
-        </div>
-        <div class="single-op">
-          <ion-icon name="share-social-outline"></ion-icon>
-        </div>
+
+    </ion-content>
+  </ion-header>
+  <div class="main-face">
+    <ion-avatar class="rest-avt">
+      <img src="{{restaurantData.faces.avatar}}" alt="">
+    </ion-avatar>
+    <h3 class="rest-name">{{restaurantData.name}}</h3>
+    <p class="rest-working-time">{{restaurantData.workingTime.inDay.start}} - {{restaurantData.workingTime.inDay.end}}
+      ({{restaurantData.workingTime.inWeek.start}} - {{restaurantData.workingTime.inWeek.end}})</p>
+  </div>
+
+  <div class="main-req">
+    <div class="orders">
+      <div class="order-choise group">
+        <ion-icon class="order-icon" name="people-outline"></ion-icon>
+        <p class="order-text">Đặt đơn nhóm</p>
+      </div>
+      <div class="order-choise later">
+        <ion-icon class="order-icon" name="calendar-clear-outline"></ion-icon>
+        <p class="order-text">Đặt đơn nhóm</p>
       </div>
     </div>
-  </ion-content>
-</ion-header>
+    <div class="info-tab">
+      <div class="single-tab">
+        <div class="info-value">
+          <ion-icon class="type-icon star" name="star"></ion-icon>
+          <p class="tab-value">{{restaurantData.rates.ratePoint}}</p>
+        </div>
+        <p class="tab-title">({{restaurantData.rates.rateCount}}+) đánh giá</p>
+      </div>
+      <div class="single-tab">
+        <div class="info-value">
+          <ion-icon class="type-icon location" name="location-outline"></ion-icon>
+        </div>
+        <p class="tab-title">Địa chỉ quán</p>
+      </div>
+      <div class="single-tab">
+        <div class="info-value">
+          <ion-icon class="type-icon time" name="alarm-outline"></ion-icon>
+          <p class="tab-value">{{restaurantData.shippingTime.from}}-{{restaurantData.shippingTime.to}} phút</p>
+        </div>
+        <p class="tab-title">Dự kiến giao</p>
+      </div>
+    </div>
+    <div class="rest-menu foods">
+      <h3 class="menu-type-title">Thức Ăn</h3>
+      <div class="menu-type foods">
+        <div class="meal" *ngFor="let i of restaurantData.foods">
+          <div class="main-info">
+            <ion-img class="meal-face"
+              src="https://s3-alpha-sig.figma.com/img/e85c/625a/09cd4cdf39acfdb90dbbb79bbd0479f0?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Py86uIr-R6P1A2IWxIp2Q32H~ktlNR6hBLrRzbka-aMI9gzIQIIW-zttefuUUtTt015jB1QLA0fl66n4ZoKpEX1Qm7EQ8eqoks7z~v3ejZVUQ8eSIfXUnjtK34OPRgt9IcoJZRsaj1Vh76yDnSCMd3cm8orWD613SySbfHfuw3e1qQ~3zevTG-gp6BftMWlVXMvTdKAVT1ffL75ftFmBAtzGxqvy-UoiPxJVycxirpmew6ykVFbOrkJ6zWsVrmyhhZ~ayx40YQqOHNRfTgh0XUp5LQcXAwntO7MXdrUM9X9y3ohQnDa6M~7pnYfWPaotx-pxH-GQUWLDIzQCqkXN4A__">
+            </ion-img>
+            <div class="meal-info">
+              <p class="meal-name">{{i.name}}</p>
+              <h3 class="meal-price">{{i.facePrice}}đ</h3>
+              <p class="sold-time">{{i.sold}} đã bán</p>
+            </div>
+          </div>
 
-<ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">rest-profile</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
+
+          <div class="add-cast">
+            <ion-icon class="add-icon" name="add-outline"></ion-icon>
+          </div>
+        </div>
+
+      </div>
+      <h3 class="menu-type-title">Đồ Uống</h3>
+      <div class="menu-type drinks">
+        <div class="meal" *ngFor="let i of restaurantData.drinks">
+          <div class="main-info">
+            <ion-img class="meal-face"
+              src="https://s3-alpha-sig.figma.com/img/3547/8963/56a2c2c8b9481efebb9531470f13a634?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cr8KuJl4fK28RS~vWDYsxo9yehH18cHW3kFvu4q6eoRjhwxH50FjoSAE6J84yL0NDqisvmWCuxagPXTtigKsZ9GoqoUrzu3kF7jy5kQFN96xajRDzPUKZe6f2DY7Wgscs7JsyNeeCVwWilAiaVzqlOK5~7RYNGAVXWYnztysA-PWfGpLao5ROGU2ASemff7emtvTPfs2ygR1dbD0k8bEzC9Dplp5OKDPyMPdvEWPo5ko3iP-3XYLKkfHrUJSewn~btaC3oPLKNrQLu-3ej44ILle7tyBp873ZcSaBD4pN5D6Q58FkYtAH0gyX10cBT2W0AWAvn~fa6xsEgBNyOU46g__">
+            </ion-img>
+            <div class="meal-info">
+              <p class="meal-name">{{i.name}}</p>
+              <h3 class="meal-price">{{i.facePrice}}đ</h3>
+              <p class="sold-time">{{i.sold}} đã bán</p>
+            </div>
+          </div>
+
+
+          <div class="add-cast">
+            <ion-icon class="add-icon" name="add-outline"></ion-icon>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </ion-content>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgZone, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
+import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -10,6 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./rest-profile.page.scss'],
 })
 export class RestProfilePage implements OnInit {
+
   numWithCommas(x: any) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -106,7 +109,37 @@ export class RestProfilePage implements OnInit {
   constructor(
     private router: Router,
     private _location: Location,
+    private alertController: AlertController,
+    private toastCtrl: ToastController
   ) { }
+  async addFoodAlert(index: any) {
+    const alert = await this.alertController.create({
+      header: "Xác nhận",
+      message: `Bạn có muốn thêm món ${index} vào giỏ hàng?`,
+      buttons: [
+        {
+          text: 'Hủy',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Đồng ý',
+          handler: async () => {
+            const toast = await this.toastCtrl.create({
+              message: 'Đã thêm thành công',
+              duration: 3000,
+              position: 'top',
+            });
+            toast.present();
+          }
+        }
+      ],
+    });
+    await alert.present();
+  }
+  
 
   ngOnInit() { }
 

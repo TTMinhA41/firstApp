@@ -77,12 +77,10 @@
             </div>
           </div>
 
-
-          <div class="add-cast">
+          <div (click)="addFoodAlert(i.name)" id="adding-item" class="add-cast">
             <ion-icon class="add-icon" name="add-outline"></ion-icon>
           </div>
         </div>
-
       </div>
       <h3 class="menu-type-title">Đồ Uống</h3>
       <div class="menu-type drinks">
@@ -98,8 +96,7 @@
             </div>
           </div>
 
-
-          <div class="add-cast">
+          <div (click)="addFoodAlert(i.name)" class="add-cast">
             <ion-icon class="add-icon" name="add-outline"></ion-icon>
           </div>
         </div>

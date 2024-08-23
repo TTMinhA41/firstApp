@@ -8,21 +8,30 @@
 
 <ion-content class="body" [fullscreen]="true">
   <!-- <ion-header collapse="condense">
-    <ion-toolbar>
+    <ion-toolbar> 
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header> -->
-  <div class="user-bg">
-  </div>
-  <ion-avatar class="user-avt">
-    <img src="https://i.pinimg.com/originals/e4/e8/53/e4e85339a5835ea9c67d3fe720ab4cfe.jpg" alt="">
-  </ion-avatar>
-  <div class="badges">
-    <ion-icon name="bookmark"></ion-icon>
-  </div>
-  <div class="user-profile info"></div>
-  <div class="user-profile joined"></div>
-  <div class="user-profile friends"></div>
-  
+  <form [formGroup]="findS" (ngSubmit)="submitFindS()">
+    <ion-item>
+      <ion-input formControlName="xValue" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="nValue" type="number"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Submit</ion-button>
+  </form>
+  <form [formGroup]="doWithNum" (ngSubmit)="submitNum()">
+    <ion-item>
+      <ion-input formControlName="num" type="number"></ion-input> 
+    </ion-item>
+    <ion-button type="submit">Submit</ion-button>
+  </form>
+  <form [formGroup]="removeNegative" (ngSubmit)="submitRemoveNega()">
+    <ion-item>
+      <ion-input formControlName="arr" type="text"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Submit</ion-button>
+  </form>
 
 </ion-content>

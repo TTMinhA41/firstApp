@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ElementRef, ViewChild } from '@angular/core';
 import { GoongService } from '../@app-core/http/goong/goong.service';
 import { IonInput } from '@ionic/angular';
 import { NgZone, OnDestroy, OnInit } from '@angular/core';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
 import { register } from 'swiper/element';
+import { StyleService } from '../@app-core/style/style.service';
 
 @Component({
   selector: 'app-tab1',
@@ -16,7 +17,10 @@ import { register } from 'swiper/element';
 })
 
 
+
 export class Tab1Page implements OnInit{
+  @ViewChild('popAlert', { static: true }) popAlert!: ElementRef
+  @ViewChild('alertContent', {static: true}) alertContent!: ElementRef
   apiKey = "moh7iGN6X9muXFV9wcXkwFSi5xj7CeSJYzwBM98Q";
   places:any = [];
   shippingLoc:any = '';
@@ -24,6 +28,7 @@ export class Tab1Page implements OnInit{
     private goongService: GoongService,
     private router: Router,
     private loadingCtrl: LoadingController,
+    private styleService: StyleService,
   ) { }
   
   ngOnInit(): void {
@@ -46,12 +51,31 @@ export class Tab1Page implements OnInit{
         },
         error: (error: any) => {
           console.error(error);
+          
         }
 
       })
     };
     printCurrentPosition();
   }
+
+  openManualAlert(){
+    const alert = this.popAlert.nativeElement;
+    const alertContent = this.alertContent.nativeElement;
+    this.styleService.removeClass(alert, 'close');
+    setTimeout(() => {
+      this.styleService.removeClass(alertContent, 'overflow');
+    }, 50);
+  }
+  answerManualAlert(ans: any){
+    const alert = this.popAlert.nativeElement;
+    const alertContent = this.alertContent.nativeElement;
+    this.styleService.addClass(alertContent, 'overflow');
+    setTimeout(() => {
+      this.styleService.addClass(alert, 'close');
+    }, 800)
+  }
+
 
   goFind(){
     this.router.navigate(['/tabs/tab1/finding']);

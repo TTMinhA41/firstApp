@@ -130,9 +130,11 @@
 
     .rest-menu {
         width: 100%;
-        .menu-type-title{
+
+        .menu-type-title {
             padding: 8px 10px;
         }
+
         .menu-type {
             padding: 10px;
 
@@ -143,6 +145,7 @@
                 border-bottom: 2px #f1f1f1 solid;
                 justify-content: space-between;
                 align-items: end;
+
                 .main-info {
                     display: flex;
 
@@ -162,12 +165,13 @@
 
                         }
 
-                          padding: 0 3px;
-                        }
-
+                        padding: 0 3px;
                     }
-                    .meal-face {
-                        width: 90px;  
+
+                }
+
+                .meal-face {
+                    width: 90px;
                 }
 
                 .add-cast {
@@ -176,6 +180,7 @@
                     background-color: #ec1e1e;
                     border-radius: 50%;
                     margin: 4px;
+
                     .add-icon {
                         width: 20px;
                         height: 20px;
@@ -190,4 +195,60 @@
             }
         }
     }
+}
+
+.ordered-view {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+    bottom: 0;
+    align-items: center;
+    transition: all 0.4s ease;
+    .left-side {
+        .cart-ico {
+            width: 50px;
+            height: 50px;
+            color: #ec1e1e;
+        }
+
+        .order-count-bubble {
+            position: absolute;
+            top: 18px;
+            left: 50px;
+            background-color: #ec1e1e;
+            border-radius: 50%;
+            border: 2px white solid;
+
+            p {
+                font-size: 20px;
+                width: 26px;
+                text-align: center;
+                color: white;
+            }
+        }
+    }
+
+    .right-side {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .ordered-price{
+            color: #ff6464;
+        }
+        .complete-order {
+            --background: #ffb800;
+            --background-activated: #f2ae00;
+            --background-focused: #f2ae00;
+            --background-hover: #ffb800;
+            --border-radius: 5px;
+            color: white;
+            padding-left: 15px;
+        }
+    }
+}
+.ordered-view.yet{
+    bottom: -100%;
 }

@@ -197,3 +197,62 @@ swiper-container::part(bullet-active) {
 		}
 	}
 }
+.pop-up-parent{
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(5px);
+	transition: all 0.75s ease;
+	.pop-up{
+		position: absolute;
+		bottom: -60%;
+		width: 100%;
+		height: 100%;
+		background-color: white;
+		border-radius: 35px;
+		transition: all 0.75s cubic-bezier(0.5, -0.5, 0.5, 1.5);
+		.pop-content{
+			padding: 20px;
+			.pop-header{
+				padding: 12px 0;
+			}
+			.pop-text{
+				padding: 12px 0;
+				color: #919191;
+			}
+			.choises-container{
+				padding: 12px 0;
+				display: flex;
+				flex-direction: column;
+				.pop-button{
+					--border-radius: 5px;
+					border-radius: 5px;
+				}
+				.pop-button.accept{
+					--background: #ec1e1e;
+					--background-activated: #df1b1b;
+					--background-focused: #df1b1b;
+					--background-hover: #ec1e1e;
+					color: white;
+				}
+				.pop-button.dismiss{
+					--background: white;
+					--background-activated: #909090;
+					--background-focused: #909090;
+					--background-hover: #838383;
+					color: #919191;
+					--border: 1px #919191 solid
+				}
+			}
+		}
+	}
+}
+.pop-up-parent.close{
+	display: none;
+}
+.pop-up.overflow{
+	bottom: -100% !important;
+}

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgZone, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { flush } from '@angular/core/testing';
+import { StyleService } from 'src/app/@app-core/style/style.service';
 
 
 @Component({
@@ -12,6 +14,13 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./rest-profile.page.scss'],
 })
 export class RestProfilePage implements OnInit {
+  @ViewChild('orderView', { static: true }) orderView!: ElementRef
+
+  orderedPrice: any = {
+    "price": 0,
+    "facePrice": "",
+    "orderCount": 0
+  }
 
   numWithCommas(x: any) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -22,7 +31,7 @@ export class RestProfilePage implements OnInit {
       "id": 1,
       "name": "Gadana - Chân Gà Cay",
       "faces": {
-        "avatar": "https://s3-alpha-sig.figma.com/img/1b75/2e41/dd3f8b6a4ea797756b545c4e4e89da7c?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IO58waz5-FsXb89jnHtFsXJKUFwwUkmq9NaKO2FlwibXthHuT4hERlhduOVN7J8kAmuk1kdQR1UX6guiXWjjz8PBzjriqlu7ifgRSlNYKghHWI8YGFHsA8MZwIuxoMXrWAyj6sPCOdvdT2Qluyb4SD-RdWXnJoJ8vKBByNwKL-LIbyDL9U7zA7wognroyZknYr9RddnBDgoqwMrsMbVrSmcbgoPDdZ80WJ3yCNaGJGc4k3syRCSmlA9JiqAuHOlIAGB-aWpL-pJb4PCvjPr3q71JsZXJGrNDb1pnnETD8Fc~1QxGRw6ct1FIiU3mg2l5VHO6Xnn5MgnAtRPw6Wil3Q__",
+        "avatar": "https://s3-alpha-sig.figma.com/img/1b75/2e41/dd3f8b6a4ea797756b545c4e4e89da7c?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QSvWwPbMMTcf58ZU9KLmQYrMc5iCYsB81G9ACsTFREuDtrSrTlhU85Btzvjt3ETnIzVKvgMonijhl0NVnh7ZgDtN81lpbu9t0Acd7OOzGYTZ0zUpdlvrfatlvvK53C1hmQvCZOW0s3X2X3qev4j2OtxAPe4igMncIZv9MGQJL3Lx2mFtdVaWrl4TM5xznwMuiMgQIzgwqZmovD1Oq0Zp9fE9U8EVgADe3ccpuvjyZOxFio4TkRt6o-GufrPzajExO38lmNCwo3Urf5t~0rVdok1RQP-zC49YsHzElTDnjNtmvKa5HCJBaG4~cECnaNsspcnYkVpCZO5V7LMagQUROw__",
         "banner": "https://www.figma.com/file/iZMFufoY7Z5RKvtFnKTRcr/image/1b9a64bcd7e16083af17185de88e722d94ab4104"
       },
       "workingTime": {
@@ -110,12 +119,13 @@ export class RestProfilePage implements OnInit {
     private router: Router,
     private _location: Location,
     private alertController: AlertController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private styleService: StyleService
   ) { }
-  async addFoodAlert(index: any) {
+  async addFoodAlert(i: any) {
     const alert = await this.alertController.create({
       header: "Xác nhận",
-      message: `Bạn có muốn thêm món ${index} vào giỏ hàng?`,
+      message: `Bạn có muốn thêm món ${i.name} vào giỏ hàng?`,
       buttons: [
         {
           text: 'Hủy',
@@ -133,13 +143,19 @@ export class RestProfilePage implements OnInit {
               position: 'top',
             });
             toast.present();
+            this.didOrder(i.price);
           }
         }
       ],
     });
-    await alert.present();
+    await alert.present();    
   }
-  
+
+  async didOrder(price: any){
+    this.orderedPrice.price += price;
+    this.orderedPrice.facePrice = this.numWithCommas(this.orderedPrice.price)
+    this.orderedPrice.orderCount += 1;
+  }
 
   ngOnInit() { }
 

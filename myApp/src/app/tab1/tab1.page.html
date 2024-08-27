@@ -5,6 +5,20 @@
     </ion-title>
   </ion-toolbar>
 </ion-header> -->
+
+<div class="pop-up-parent close" #popAlert>
+  <div class="pop-up overflow" #alertContent>
+    <div class="pop-content">
+      <h2 class="pop-header">Bạn muốn rời khỏi đơn hàng nhóm này?</h2>
+      <p class="pop-text">Bạn sẽ không thể thêm món nào vào đơn hàng này nữa. Nếu muốn thêm món, bạn sẽ cần tham gia lại nhóm</p>
+      <div class="choises-container">
+        <ion-button (click)="answerManualAlert('accept')" class="pop-button accept">Rời đơn hàng nhóm</ion-button>
+        <ion-button (click)="answerManualAlert('dismis')" class="pop-button dismiss">Đóng</ion-button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ion-header collapse="condense" scroll-y="false">
   <ion-content class="header">
     <div class="shipping-header">
@@ -25,7 +39,6 @@
   </ion-content>
 </ion-header>
 <ion-content class="body" [fullscreen]="true">
-
   <div class="search-native">
     <ion-searchbar class="search-bar" placeholder="Bạn đang thèm gì nào?" (click)="goFind()"></ion-searchbar>
   </div>
@@ -34,69 +47,69 @@
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
     <swiper-slide class="food-slide">
       <ion-avatar>
         <img
-          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KXG3j4ISNhlnP7BkAULTb-F73Z2HwTMEquB08Jn2GFk8Ei5LeBb2lQ51wJLtdglM9S-CIsw68LiDv6rrsJI5beXEIqvWp8VDjYWA2ViRX3uT5Z0qjgJSkAcAF8c7pQaHxb72LxP41TRjLl3G73wCtfBtOs5U02~IgVwGNekyVeYP3HMqkon8x~ssAP7-ajOGGvcYPjAKiU9PMiOt2~7nUeduzVYy1wffbP7uj70fFvWxspLQppScTw855MDxLVRutEbKRH9tdCTsOrdcWnLcMfOC7fZeB7mQwRwLXIxp-djIlBIiGt68DVXIz7IohPd~D6ZrWTItkQUUc~n-CejaZw__">
+          src="https://s3-alpha-sig.figma.com/img/fdda/98e3/1734c72da0dd87a7a8dcb3b1e99e7407?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=muLf7rko-zCpQ7aKDPlVJkVdISS1jRb8lTVNXQ36roosdWwgHxs65Dc4ITx0nx5aNvIEQsUJ5yZIEskHv2H85bqflfyg50Nnli~KYMy8NXkNGT0W5CdEFLz4TiBMytUorW9c7QH1LWp1Q6sLWRjjFmo6vi~95mlejE8-n3scvAhSW4Ck1v4cI5MZiBeN3naWodiG3Bt09Mi44eaLWK9HxUDPo3w4-bKkVdriMRjQelC5tvPVP8TTgIiPN3wQRyIs43Cu73~ZOcjGC4g~rsg46qU-RR6ikbv9TEmL0~tUlLYyo5lxwaUNsvCM1B3H6HsLxIzdtZbj~LNtf7SaUS0T5g__">
       </ion-avatar>
       <p class="food-type-text">Ăn Nhanh</p>
     </swiper-slide>
   </swiper-container>
 
-  <div class="ads-container">
+  <div class="ads-container" (click)="openManualAlert()">
     <swiper-container class="new-ads-slider" pagination="true" loop="true">
       <swiper-slide class="ads-slide">
         <ion-img
-          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__">
+          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VQRzIqr9o7vODUh3CE-UlMx2g-yiNfA0HzDOTVetAgbrDLRIrwbQwpzGo6k56YrQpF1uu~WocZ1lMEevF2U8t93a~IztFBXOQzHE6fZaP~owswSM2oatVrPISPnVq8wXsZKIzvSaMN4CWPVYeZ3IG3hiFUZVDUYmJzfZr3MJKhceywnf5pu8ceCJtVuM76HqMKjC7KPkp~stf82cKXuwNuYMWo~rZS-x~4p8TX9MNjSu6X4dST4MwSJ6catOxmTyvd4uvgarjFnOCkc0vxjErYjL1tIZFZt2n58yt45wGQ5Bbsxrcvm8mRkzNgDg2oyZ5Q0M6L81ryMUcXyjhVTXxQ__">
         </ion-img>
       </swiper-slide>
       <swiper-slide class="ads-slide">
         <ion-img
-          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__">
+          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VQRzIqr9o7vODUh3CE-UlMx2g-yiNfA0HzDOTVetAgbrDLRIrwbQwpzGo6k56YrQpF1uu~WocZ1lMEevF2U8t93a~IztFBXOQzHE6fZaP~owswSM2oatVrPISPnVq8wXsZKIzvSaMN4CWPVYeZ3IG3hiFUZVDUYmJzfZr3MJKhceywnf5pu8ceCJtVuM76HqMKjC7KPkp~stf82cKXuwNuYMWo~rZS-x~4p8TX9MNjSu6X4dST4MwSJ6catOxmTyvd4uvgarjFnOCkc0vxjErYjL1tIZFZt2n58yt45wGQ5Bbsxrcvm8mRkzNgDg2oyZ5Q0M6L81ryMUcXyjhVTXxQ__">
         </ion-img>
       </swiper-slide>
       <swiper-slide class="ads-slide">
         <ion-img
-          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lhtjDDOTv9Ouc3cYgw3EXaUU61h4JdWoHGEQvgrJa1B2TbAvxQAMtGBg-NwuCFjsIzEsaat0zJQGYRKf2B32Zr3d6lCV1vt~oEvU~-mEBge0ODY9Ta0MNG5RDy2jUDMUKLju~b2ilqBaQEUbqwbsc2Hssetqgjdw2kV0xRt3lS3H3tlHWdyeRZQUFH41qwOZ6ta~BV5mM7gOJU0GYUGzenQ5L5ZbBpQHlXyjhcwzV6c7cdHJkQO9GqD2OsFSSJkeuFQ1fuazbaKYTIczBJO69mT5dkkDADqVU2KPUGhNRcbFko8zIr1BnSJSO0EPd5qw7N4bqQuDVm8XUNv36m4gfw__">
+          src="https://s3-alpha-sig.figma.com/img/72e4/0a28/24b542915c906ee667058cfd01903f46?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VQRzIqr9o7vODUh3CE-UlMx2g-yiNfA0HzDOTVetAgbrDLRIrwbQwpzGo6k56YrQpF1uu~WocZ1lMEevF2U8t93a~IztFBXOQzHE6fZaP~owswSM2oatVrPISPnVq8wXsZKIzvSaMN4CWPVYeZ3IG3hiFUZVDUYmJzfZr3MJKhceywnf5pu8ceCJtVuM76HqMKjC7KPkp~stf82cKXuwNuYMWo~rZS-x~4p8TX9MNjSu6X4dST4MwSJ6catOxmTyvd4uvgarjFnOCkc0vxjErYjL1tIZFZt2n58yt45wGQ5Bbsxrcvm8mRkzNgDg2oyZ5Q0M6L81ryMUcXyjhVTXxQ__">
         </ion-img>
       </swiper-slide>
     </swiper-container>
@@ -108,7 +121,7 @@
       <swiper-slide class="pop-rest-slide" (click)="goRest()">
         <ion-avatar class="pop-rest-face">
           <img
-            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BBkNzFBlzGul5-cIXDr1ciocqFW850S2Wu8VLBuWgDsqRiyIR9Vqr1vbbLlHFxLeI9cnII6STq-H6zrxsQxWEHb7dcncv3wd0MF6ZUPAdS6l5V-8z-pKMhQhEYNyoHhxIE6v011cvDzCMmWz4ZZb46ODpQZt~7OeAR6PCsvtWJ4hx6f0uNTExi1KXYYco3msqlatq~1Z2KDUxv-pFb7tT07TG6g20rTk2zCP~u-iKUmO-yEjJaml3cQb44rv2ZD4R1DdNriJoTwQ4XuaLDUu4epmrHa12ZEnI5Dm7DAJYCiLauHpkLCdFU~JXVTVdSZlqhL1OVpq5qhKeTv7fS-HcA__"
             alt="">
         </ion-avatar>
         <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
@@ -120,7 +133,7 @@
       <swiper-slide class="pop-rest-slide" (click)="goRest()">
         <ion-avatar class="pop-rest-face">
           <img
-            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BBkNzFBlzGul5-cIXDr1ciocqFW850S2Wu8VLBuWgDsqRiyIR9Vqr1vbbLlHFxLeI9cnII6STq-H6zrxsQxWEHb7dcncv3wd0MF6ZUPAdS6l5V-8z-pKMhQhEYNyoHhxIE6v011cvDzCMmWz4ZZb46ODpQZt~7OeAR6PCsvtWJ4hx6f0uNTExi1KXYYco3msqlatq~1Z2KDUxv-pFb7tT07TG6g20rTk2zCP~u-iKUmO-yEjJaml3cQb44rv2ZD4R1DdNriJoTwQ4XuaLDUu4epmrHa12ZEnI5Dm7DAJYCiLauHpkLCdFU~JXVTVdSZlqhL1OVpq5qhKeTv7fS-HcA__"
             alt="">
         </ion-avatar>
         <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
@@ -132,7 +145,7 @@
       <swiper-slide class="pop-rest-slide" (click)="goRest()">
         <ion-avatar class="pop-rest-face">
           <img
-            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BBkNzFBlzGul5-cIXDr1ciocqFW850S2Wu8VLBuWgDsqRiyIR9Vqr1vbbLlHFxLeI9cnII6STq-H6zrxsQxWEHb7dcncv3wd0MF6ZUPAdS6l5V-8z-pKMhQhEYNyoHhxIE6v011cvDzCMmWz4ZZb46ODpQZt~7OeAR6PCsvtWJ4hx6f0uNTExi1KXYYco3msqlatq~1Z2KDUxv-pFb7tT07TG6g20rTk2zCP~u-iKUmO-yEjJaml3cQb44rv2ZD4R1DdNriJoTwQ4XuaLDUu4epmrHa12ZEnI5Dm7DAJYCiLauHpkLCdFU~JXVTVdSZlqhL1OVpq5qhKeTv7fS-HcA__"
             alt="">
         </ion-avatar>
         <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
@@ -144,7 +157,7 @@
       <swiper-slide class="pop-rest-slide" (click)="goRest()">
         <ion-avatar class="pop-rest-face">
           <img
-            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KpU4DY2spT-cWHs4PfNauUSdkXBRgWOtd6vH8hj4Now7-3OVGbvAThRw38L4gkrHpZpluDKbmRLBgEEA~~dpOFzX-7F75nIKLpfe9GuvWlC32uDlI1DiLBRxQTvGrsqlUfxPyEPxtlqx8MOu7ExpWyhQnPbVvtmuvqlsqcHo5VUNPhfS0R3tNOELaRnWzt3EJazY2Flr~q0fgO82g~230x-QGkdTSH-JpSL~gwKSp~f5MkuATql0b4fM1mXWtFSVEdbLAshuoL1YMVxsN71gSxdVMDRGyCGFzWzx4pITCTGUqS~JXE9tebTxU-P4lhIFdxl5ehpCxb5rHSTgyl70OA__"
+            src="https://s3-alpha-sig.figma.com/img/cab6/c684/8581183e96c0a3d0ae043d3c57846010?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BBkNzFBlzGul5-cIXDr1ciocqFW850S2Wu8VLBuWgDsqRiyIR9Vqr1vbbLlHFxLeI9cnII6STq-H6zrxsQxWEHb7dcncv3wd0MF6ZUPAdS6l5V-8z-pKMhQhEYNyoHhxIE6v011cvDzCMmWz4ZZb46ODpQZt~7OeAR6PCsvtWJ4hx6f0uNTExi1KXYYco3msqlatq~1Z2KDUxv-pFb7tT07TG6g20rTk2zCP~u-iKUmO-yEjJaml3cQb44rv2ZD4R1DdNriJoTwQ4XuaLDUu4epmrHa12ZEnI5Dm7DAJYCiLauHpkLCdFU~JXVTVdSZlqhL1OVpq5qhKeTv7fS-HcA__"
             alt="">
         </ion-avatar>
         <p class="rest-name">Mỳ Quảng Quang Anh - Đà Nẵng</p>
@@ -155,6 +168,7 @@
       </swiper-slide>
     </swiper-container>
   </div>
+
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
 </ion-content>

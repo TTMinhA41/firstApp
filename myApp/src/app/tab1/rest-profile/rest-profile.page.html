@@ -68,7 +68,7 @@
         <div class="meal" *ngFor="let i of restaurantData.foods">
           <div class="main-info">
             <ion-img class="meal-face"
-              src="https://s3-alpha-sig.figma.com/img/e85c/625a/09cd4cdf39acfdb90dbbb79bbd0479f0?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Py86uIr-R6P1A2IWxIp2Q32H~ktlNR6hBLrRzbka-aMI9gzIQIIW-zttefuUUtTt015jB1QLA0fl66n4ZoKpEX1Qm7EQ8eqoks7z~v3ejZVUQ8eSIfXUnjtK34OPRgt9IcoJZRsaj1Vh76yDnSCMd3cm8orWD613SySbfHfuw3e1qQ~3zevTG-gp6BftMWlVXMvTdKAVT1ffL75ftFmBAtzGxqvy-UoiPxJVycxirpmew6ykVFbOrkJ6zWsVrmyhhZ~ayx40YQqOHNRfTgh0XUp5LQcXAwntO7MXdrUM9X9y3ohQnDa6M~7pnYfWPaotx-pxH-GQUWLDIzQCqkXN4A__">
+              src="https://s3-alpha-sig.figma.com/img/e85c/625a/09cd4cdf39acfdb90dbbb79bbd0479f0?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=S9AdDZD46haEL6Ma1Qjv2jXSch~M85UDx9wS7IZABSUpAEIG-ZNgjw-oK8skwi3kkqWFNNxd6YGFfzBDVweNzy-mVRhoiMtAmOZuVdYIBpjrXZdbY6lFuYb0G7rClLrl7kj3liaaTpH6S0wp9sc18RG1ctgeFj1JfskTFizml4ap4ECJIVcljgBOzbppwMJ-84aVzGkr1MD7yHg0K7MevsntFLmGHf~OxI8RE3ke2JZ6cVCHk~6a4WmqbPRKBfHJ38SJ2Cdeo7H3fdYzvisxJI1r~82pDbg0oRbgvs78W-vsJo3HQoP5EvP8Ni7kLQM4VZRTKeQdYqt4TD1JZEflBg__">
             </ion-img>
             <div class="meal-info">
               <p class="meal-name">{{i.name}}</p>
@@ -77,7 +77,7 @@
             </div>
           </div>
 
-          <div (click)="addFoodAlert(i.name)" id="adding-item" class="add-cast">
+          <div (click)="addFoodAlert(i)" id="adding-item" class="add-cast">
             <ion-icon class="add-icon" name="add-outline"></ion-icon>
           </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="meal" *ngFor="let i of restaurantData.drinks">
           <div class="main-info">
             <ion-img class="meal-face"
-              src="https://s3-alpha-sig.figma.com/img/3547/8963/56a2c2c8b9481efebb9531470f13a634?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cr8KuJl4fK28RS~vWDYsxo9yehH18cHW3kFvu4q6eoRjhwxH50FjoSAE6J84yL0NDqisvmWCuxagPXTtigKsZ9GoqoUrzu3kF7jy5kQFN96xajRDzPUKZe6f2DY7Wgscs7JsyNeeCVwWilAiaVzqlOK5~7RYNGAVXWYnztysA-PWfGpLao5ROGU2ASemff7emtvTPfs2ygR1dbD0k8bEzC9Dplp5OKDPyMPdvEWPo5ko3iP-3XYLKkfHrUJSewn~btaC3oPLKNrQLu-3ej44ILle7tyBp873ZcSaBD4pN5D6Q58FkYtAH0gyX10cBT2W0AWAvn~fa6xsEgBNyOU46g__">
+              src="https://s3-alpha-sig.figma.com/img/3547/8963/56a2c2c8b9481efebb9531470f13a634?Expires=1725840000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Z3an6V80rnD63fulxffTwV~072X8Ty~VyKGvhjQf1~WgzZmTGr2M6hQtKY28iqw4tFt-7Fdz3eOLz~XoM0H0zU59CPsT6iD-dO5pL1b0Xf38423S6I5WWP3rJBvLfHMUFq32Iwja2-RdcZBOW-p4yPwvBURHu-XcPzHT~OF4SkDEjwlhiYZexIHng6Qrq7peD3qCgjmBR0jfMJ54VyEgbjvL53QlA46snzgB2WQZhQ4ZWxeEEh76CID2ad-lPWCafyeSrbpcVGF5bNi8yaDMmLk2zadlXOOdZn85duLfc-9LBtIB5ez~zEaFx-NHyB-WbFp62FA2hEtaM3knP2Fj2Q__">
             </ion-img>
             <div class="meal-info">
               <p class="meal-name">{{i.name}}</p>
@@ -96,12 +96,24 @@
             </div>
           </div>
 
-          <div (click)="addFoodAlert(i.name)" class="add-cast">
+          <div (click)="addFoodAlert(i)" class="add-cast">
             <ion-icon class="add-icon" name="add-outline"></ion-icon>
           </div>
         </div>
 
       </div>
+    </div>
+  </div>
+  <div class="ordered-view" #orderView *ngIf="orderedPrice">
+    <div class="left-side">
+      <ion-icon class="cart-ico" name="cart"></ion-icon>
+      <div class="order-count-bubble">
+        <p>{{orderedPrice.orderCount}}</p>
+      </div>
+    </div>
+    <div class="right-side">
+      <h3 class="ordered-price">{{orderedPrice.facePrice}} đ</h3>
+      <ion-button class="complete-order">Giao hàng</ion-button>
     </div>
   </div>
 

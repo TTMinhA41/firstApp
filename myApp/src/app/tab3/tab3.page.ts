@@ -50,7 +50,7 @@ export class Tab3Page {
       console.log(`Lớn nhấn là ${maxValue}`);
       console.log(`Sắp xếp: ${numArr}`);
       console.log(`Tổng: ${sum}`);
-      console.log(`Trung bình: ${average.toFixed(2)}`);
+      console.log(`Trung bình: ${average.toFixed(1)}`);
       
     }
     else{

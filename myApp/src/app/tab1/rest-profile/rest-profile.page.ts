@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { flush } from '@angular/core/testing';
 import { StyleService } from 'src/app/@app-core/style/style.service';
+import { abbreviateNumber } from 'js-abbreviation-number';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class RestProfilePage implements OnInit {
   orderedPrice: any = {
     "price": 0,
     "facePrice": "",
-    "orderCount": 0
+    "orderCount": 0,
+    "faceOrderCount": ""
   }
 
   numWithCommas(x: any) {
@@ -120,8 +122,11 @@ export class RestProfilePage implements OnInit {
     private _location: Location,
     private alertController: AlertController,
     private toastCtrl: ToastController,
-    private styleService: StyleService
+    private styleService: StyleService,
   ) { }
+
+  ngOnInit() {}
+
   async addFoodAlert(i: any) {
     const alert = await this.alertController.create({
       header: "Xác nhận",
@@ -151,13 +156,13 @@ export class RestProfilePage implements OnInit {
     await alert.present();    
   }
 
-  async didOrder(price: any){
+  async didOrder(price: number){
     this.orderedPrice.price += price;
     this.orderedPrice.facePrice = this.numWithCommas(this.orderedPrice.price)
     this.orderedPrice.orderCount += 1;
+    this.orderedPrice.faceOrderCount = abbreviateNumber(this.orderedPrice.orderCount, 1)
   }
 
-  ngOnInit() { }
 
   goBack() {
     this._location.back();
